@@ -43,6 +43,7 @@ import org.fcitx.fcitx5.android.input.clipboard.ClipboardStateMachine.Transition
 import org.fcitx.fcitx5.android.input.dependency.inputMethodService
 import org.fcitx.fcitx5.android.input.dependency.theme
 import org.fcitx.fcitx5.android.input.keyboard.KeyboardWindow
+import org.fcitx.fcitx5.android.input.secureclipboard.SecureClipboardWindow
 import org.fcitx.fcitx5.android.input.wm.InputWindow
 import org.fcitx.fcitx5.android.input.wm.InputWindowManager
 import org.fcitx.fcitx5.android.utils.AppUtil
@@ -166,6 +167,9 @@ class ClipboardWindow : InputWindow.ExtendedInputWindow<ClipboardWindow>() {
                 service.lifecycleScope.launch {
                     promptDeleteAll(ClipboardManager.haveUnpinned())
                 }
+            }
+            secureClipboardButton.setOnClickListener {
+                windowManager.attachWindow(SecureClipboardWindow())
             }
         }
     }

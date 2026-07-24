@@ -57,7 +57,12 @@ class ClipboardUi(override val ctx: Context, private val theme: Theme) : Ui {
         contentDescription = ctx.getString(R.string.delete_all)
     }
 
+    val secureClipboardButton = ToolButton(ctx, R.drawable.ic_baseline_lock_24, theme).apply {
+        contentDescription = ctx.getString(R.string.secure_clipboard)
+    }
+
     val extension = horizontalLayout {
+        add(secureClipboardButton, lParams(dp(40), dp(40)))
         add(deleteAllButton, lParams(dp(40), dp(40)))
     }
 

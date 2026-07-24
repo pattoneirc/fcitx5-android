@@ -6,9 +6,13 @@ package org.fcitx.fcitx5.android.input.editing
 
 import android.view.KeyEvent
 import android.view.View
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.fcitx.fcitx5.android.R
 import org.fcitx.fcitx5.android.data.InputFeedbacks
 import org.fcitx.fcitx5.android.data.prefs.AppPrefs
+import org.fcitx.fcitx5.android.data.secureclipboard.SecureClipboardManager
+import org.fcitx.fcitx5.android.data.secureclipboard.SecureClipboardPolicy
 import org.fcitx.fcitx5.android.data.theme.ThemeManager
 import org.fcitx.fcitx5.android.input.FcitxInputMethodService
 import org.fcitx.fcitx5.android.input.broadcast.InputBroadcastReceiver
@@ -18,6 +22,7 @@ import org.fcitx.fcitx5.android.input.dependency.theme
 import org.fcitx.fcitx5.android.input.keyboard.CustomGestureView
 import org.fcitx.fcitx5.android.input.wm.InputWindow
 import org.fcitx.fcitx5.android.input.wm.InputWindowManager
+import org.fcitx.fcitx5.android.utils.toast
 import org.mechdancer.dependency.manager.must
 
 class TextEditingWindow : InputWindow.ExtendedInputWindow<TextEditingWindow>(),
@@ -95,6 +100,9 @@ class TextEditingWindow : InputWindow.ExtendedInputWindow<TextEditingWindow>(),
             clipboardButton.setOnClickListener {
                 windowManager.attachWindow(ClipboardWindow())
             }
+            secureCopyButton.setOnClickListener {
+                saveSelectionSecurely()
+            }
         }
     }
 
@@ -110,6 +118,34 @@ class TextEditingWindow : InputWindow.ExtendedInputWindow<TextEditingWindow>(),
     override fun onSelectionUpdate(start: Int, end: Int) {
         hasSelection = start != end
         ui.updateSelection(hasSelection, userSelection)
+    }
+
+    private fun saveSelectionSecurely() {
+        if (!SecureClipboardManager.isInitialized) {
+            context.toast(R.string.secure_clipboard_unavailable)
+            return
+        }
+        val selected = service.currentInputConnection
+            ?.getSelectedText(0)
+            ?.toString()
+            .orEmpty()
+        if (selected.isEmpty()) {
+            context.toast(R.string.secure_copy_no_selection)
+            return
+        }
+        if (selected.length > SecureClipboardPolicy.MAX_TEXT_LENGTH) {
+            context.toast(R.string.secure_copy_too_long)
+            return
+        }
+        service.lifecycleScope.launch {
+            runCatching {
+                SecureClipboardManager.save(selected)
+            }.onSuccess {
+                context.toast(R.string.secure_copy_saved)
+            }.onFailure {
+                context.toast(R.string.secure_copy_failed)
+            }
+        }
     }
 
     override val title by lazy {

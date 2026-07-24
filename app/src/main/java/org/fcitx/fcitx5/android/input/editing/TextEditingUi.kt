@@ -194,7 +194,12 @@ class TextEditingUi(
         contentDescription = ctx.getString(R.string.clipboard)
     }
 
+    val secureCopyButton = ToolButton(ctx, R.drawable.ic_baseline_lock_24, theme).apply {
+        contentDescription = ctx.getString(R.string.secure_copy)
+    }
+
     val extension = horizontalLayout {
         add(clipboardButton, lParams(dp(40), dp(40)))
+        add(secureCopyButton, lParams(dp(40), dp(40)))
     }
 }

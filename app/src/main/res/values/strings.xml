@@ -260,6 +260,22 @@
     <string name="_cannot_be_empty">%1$s cannot be empty</string>
     <string name="action_forget_candidate_word">Forget word</string>
     <string name="clipboard_mask_sensitive">Mask sensitive data (such as passwords)</string>
+    <!-- Personal-build secure clipboard strings intentionally ship in Chinese only. -->
+    <string name="secure_clipboard" translatable="false">安全剪贴板</string>
+    <string name="secure_copy" translatable="false">安全复制</string>
+    <string name="secure_copy_no_selection" translatable="false">请先选择要加密保存的文字</string>
+    <string name="secure_copy_too_long" translatable="false">选中文字过长，最多保存 100000 个字符</string>
+    <string name="secure_copy_saved" translatable="false">已加密保存，1 小时后自动删除</string>
+    <string name="secure_copy_failed" translatable="false">安全复制失败</string>
+    <string name="secure_import" translatable="false">加密当前系统剪贴板</string>
+    <string name="secure_import_empty" translatable="false">系统剪贴板中没有可加密的纯文本</string>
+    <string name="secure_import_saved" translatable="false">已加密保存并清空系统剪贴板</string>
+    <string name="secure_import_requires_history_off" translatable="false">请先关闭普通剪贴板历史记录</string>
+    <string name="secure_clipboard_empty" translatable="false">保险箱为空\n请在“文本编辑”中选择文字，然后点锁形按钮</string>
+    <string name="secure_clipboard_entry" translatable="false">加密内容\n%1$s 到期 · 粘贴后删除</string>
+    <string name="secure_clipboard_expired" translatable="false">内容已过期或无法解密</string>
+    <string name="secure_clipboard_unavailable" translatable="false">设备解锁后才能使用安全剪贴板</string>
+    <string name="secure_clipboard_delete_all" translatable="false">删除全部加密内容？</string>
     <string name="open_rime_user_data_dir">Application data directory will be opened. RIME user data directory is located in \"data/rime\".</string>
     <string name="restart_to_apply_settings">Application will restart to apply new settings. Proceed?</string>
     <string name="space_swipe_move_cursor">Swipe on space key to move cursor</string>
