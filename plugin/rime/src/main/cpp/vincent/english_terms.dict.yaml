@@ -1,0 +1,317 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: english_terms
+version: "1.1.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+# Code hosting and version control
+GitHub	github	320
+GitHub Desktop	githubdesktop	260
+GitHub Actions	githubactions	260
+GitHub Copilot	githubcopilot	250
+GitHub Pages	githubpages	230
+GitHub Issues	githubissues	230
+GitHub Releases	githubreleases	230
+GitLab	gitlab	280
+Bitbucket	bitbucket	230
+Gitee	gitee	230
+Git	git	260
+repository	repository	210
+source repository	sourcerepository	190
+version control	versioncontrol	210
+branch	branch	190
+commit	commit	210
+push	push	180
+pull	pull	180
+clone	clone	200
+fork	fork	210
+merge	merge	200
+rebase	rebase	190
+pull request	pullrequest	220
+code review	codereview	210
+issue tracker	issuetracker	190
+release	release	190
+release notes	releasenotes	190
+tag	tag	170
+changelog	changelog	200
+README	readme	230
+license	license	180
+open source	opensource	220
+source code	sourcecode	210
+
+# AI services, models and ecosystems
+OpenAI	openai	300
+ChatGPT	chatgpt	300
+Codex	codex	280
+Claude	claude	280
+Anthropic	anthropic	250
+Gemini	gemini	270
+Google AI Studio	googleaistudio	230
+Vertex AI	vertexai	220
+Microsoft Copilot	microsoftcopilot	240
+Perplexity	perplexity	230
+Grok	grok	220
+DeepSeek	deepseek	280
+Qwen	qwen	280
+Hugging Face	huggingface	280
+ModelScope	modelscope	230
+Civitai	civitai	260
+Replicate	replicate	230
+OpenRouter	openrouter	240
+Ollama	ollama	260
+LM Studio	lmstudio	250
+vLLM	vllm	230
+LangChain	langchain	240
+LlamaIndex	llamaindex	230
+Gradio	gradio	220
+Streamlit	streamlit	210
+TensorFlow	tensorflow	240
+PyTorch	pytorch	260
+JAX	jax	210
+ONNX	onnx	230
+TensorRT	tensorrt	230
+artificial intelligence	artificialintelligence	220
+machine learning	machinelearning	220
+deep learning	deeplearning	220
+generative AI	generativeai	240
+large language model	largelanguagemodel	240
+multimodal model	multimodalmodel	220
+foundation model	foundationmodel	210
+neural network	neuralnetwork	210
+natural language processing	naturallanguageprocessing	210
+computer vision	computervision	210
+text generation	textgeneration	210
+image generation	imagegeneration	230
+video generation	videogeneration	230
+speech recognition	speechrecognition	200
+text to speech	texttospeech	210
+speech to text	speechtotext	210
+inference	inference	210
+training	training	190
+fine-tuning	finetuning	220
+dataset	dataset	210
+parameter	parameter	190
+context window	contextwindow	210
+tokenizer	tokenizer	200
+semantic search	semanticsearch	220
+vector database	vectordatabase	210
+retrieval augmented generation	retrievalaugmentedgeneration	220
+RAG	rag	250
+AI agent	agent	220
+tool calling	toolcalling	210
+function calling	functioncalling	210
+structured output	structuredoutput	210
+system prompt	systemprompt	230
+user prompt	userprompt	210
+prompt engineering	promptengineering	230
+prompt template	prompttemplate	210
+
+# Development tools and data formats
+Visual Studio	visualstudio	260
+Visual Studio Code	visualstudiocode	260
+VS Code	vscode	280
+MSBuild	msbuild	260
+CMake	cmake	250
+xmake	xmake	250
+PowerShell	powershell	260
+Windows Terminal	windowsterminal	230
+command line	commandline	210
+terminal	terminal	210
+console	console	190
+Bash	bash	220
+Python	python	270
+JavaScript	javascript	260
+TypeScript	typescript	260
+C++	cpp	270
+C Sharp	csharp	240
+Rust	rust	230
+Go	golang	230
+Node.js	nodejs	250
+npm	npm	240
+pnpm	pnpm	230
+Yarn	yarn	220
+API	api	250
+SDK	sdk	240
+CLI	cli	240
+GUI	gui	230
+JSON	json	260
+YAML	yaml	260
+XML	xml	220
+CSV	csv	220
+Markdown	markdown	250
+regular expression	regularexpression	210
+regex	regex	230
+Unicode	unicode	230
+UTF-8	utf8	250
+HTTP	http	230
+HTTPS	https	240
+WebSocket	websocket	220
+localhost	localhost	230
+proxy	proxy	210
+port	port	190
+access token	accesstoken	210
+cache	cache	190
+database	database	210
+SQLite	sqlite	230
+PostgreSQL	postgresql	230
+Redis	redis	220
+Docker	docker	260
+Docker Compose	dockercompose	240
+Kubernetes	kubernetes	240
+virtual machine	virtualmachine	210
+environment variable	environmentvariable	210
+dependency	dependency	200
+compiler	compiler	210
+debugger	debugger	200
+breakpoint	breakpoint	190
+stack trace	stacktrace	200
+unit test	unittest	210
+integration test	integrationtest	200
+continuous integration	continuousintegration	200
+continuous deployment	continuousdeployment	200
+
+# Image, video, audio and 3D applications
+Adobe Photoshop	adobephotoshop	270
+Photoshop	photoshop	280
+Adobe Illustrator	adobeillustrator	240
+Illustrator	illustrator	240
+Adobe Premiere Pro	adobepremierepro	260
+Premiere Pro	premierepro	270
+Adobe After Effects	adobeaftereffects	260
+After Effects	aftereffects	270
+DaVinci Resolve	davinciresolve	270
+CapCut	capcut	260
+Jianying Pro	jianyingpro	210
+Final Cut Pro	finalcutpro	240
+OBS Studio	obsstudio	240
+FFmpeg	ffmpeg	270
+Audacity	audacity	220
+REAPER	reaper	220
+Pro Tools	protools	220
+Adobe Audition	adobeaudition	230
+Blender	blender	280
+Unreal Engine	unrealengine	270
+Unreal Engine 5	unrealenginefive	280
+Unity	unity	250
+Cinema 4D	cinemafourd	240
+Autodesk Maya	autodeskmaya	240
+Maya	maya	240
+Houdini	houdini	250
+ZBrush	zbrush	240
+Substance 3D Painter	substancepainter	240
+Krita	krita	230
+Clip Studio Paint	clipstudiopaint	240
+Figma	figma	250
+Canva	canva	230
+Notion	notion	250
+Obsidian	obsidian	240
+resolution	resolution	190
+aspect ratio	aspectratio	210
+frame rate	framerate	210
+frames per second	framespersecond	200
+bitrate	bitrate	200
+codec	codec	210
+render	render	210
+render queue	renderqueue	200
+export	export	190
+import	import	190
+timeline	timeline	200
+keyframe	keyframe	210
+subtitle	subtitle	210
+caption	caption	190
+voice-over	voiceover	210
+soundtrack	soundtrack	200
+sound effect	soundeffect	200
+color grading	colorgrading	210
+color correction	colorcorrection	200
+motion graphics	motiongraphics	210
+visual effects	visualeffects	210
+VFX	vfx	230
+CGI	cgi	230
+
+# Common digital workflow vocabulary
+account	account	190
+username	username	210
+password	password	210
+sign in	signin	200
+sign out	signout	200
+log in	login	210
+log out	logout	210
+download	download	210
+upload	upload	210
+install	install	200
+uninstall	uninstall	200
+update	update	200
+upgrade	upgrade	190
+settings	settings	210
+preferences	preferences	190
+configuration	configuration	210
+default	default	180
+custom	custom	180
+enabled	enabled	180
+disabled	disabled	180
+error	error	210
+warning	warning	200
+debug	debug	200
+test	test	180
+preview	preview	200
+draft	draft	190
+publish	publish	190
+save	save	180
+delete	delete	180
+copy	copy	180
+paste	paste	180
+undo	undo	180
+redo	redo	180
+search	search	190
+replace	replace	190
+folder	folder	190
+file	file	180
+file path	filepath	200
+URL	url	220
+link	link	180
+website	website	200
+browser	browser	200
+window	window	180
+screen	screen	180
+keyboard	keyboard	190
+shortcut	shortcut	200
+plugin	plugin	210
+extension	extension	200
+template	template	200
+document	document	190
+spreadsheet	spreadsheet	190
+presentation	presentation	190
+project	project	210
+task	task	180
+status	status	180
+progress	progress	190
+success	success	180
+failed	failed	180
+online	online	180
+offline	offline	190
+local	local	180
+remote	remote	180
+public	public	180
+private	private	180
+backup	backup	210
+restore	restore	200
+history	history	180
+version	version	190
+email	email	210
+message	message	190
+comment	comment	190
+feedback	feedback	190
+example	example	180
+reference	reference	190
+source	source	180
+title	title	180
+description	description	190
+summary	summary	190
+details	details	180
+English	english	220
+Chinese	chinese	210
+Simplified Chinese	simplifiedchinese	220
+Traditional Chinese	traditionalchinese	220

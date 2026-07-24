@@ -1,0 +1,78 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: ai_nodes
+version: "1.0.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+custom node	customnode	150
+workflow	workflow	180
+workflow JSON	workflowjson	170
+checkpoint loader	checkpointloader	170
+Load Checkpoint	loadcheckpoint	160
+VAE Loader	vaeloader	160
+LoRA Loader	loraloader	180
+CLIP Loader	cliploader	160
+UNet Loader	unetloader	160
+ControlNet Loader	controlnetloader	170
+IPAdapter Loader	ipadapterloader	170
+model loader	modelloader	150
+image loader	imageloader	150
+video loader	videoloader	150
+Load Image	loadimage	150
+Load Video	loadvideo	150
+Save Image	saveimage	150
+Save Video	savevideo	150
+KSampler	ksampler	220
+KSampler Advanced	ksampleradvanced	190
+sampler	sampler	170
+scheduler	scheduler	170
+CFG scale	cfgscale	160
+denoise	denoise	170
+seed	seed	150
+latent	latent	160
+Empty Latent Image	emptylatentimage	160
+VAE Encode	vaeencode	170
+VAE Decode	vaedecode	170
+CLIP Text Encode	cliptextencode	180
+positive prompt	positiveprompt	170
+negative prompt	negativeprompt	170
+conditioning	conditioning	160
+ControlNet Apply	controlnetapply	180
+Apply ControlNet	applycontrolnet	170
+IPAdapter Apply	ipadapterapply	180
+Apply IPAdapter	applyipadapter	170
+FaceID Plus	faceidplus	160
+FaceDetailer	facedetailer	210
+Detailer	mdetailer	160
+MaskDetailer	maskdetailer	170
+upscale	upscale	170
+Ultimate SD Upscale	ultimatesdupscale	190
+Tiled Diffusion	tileddiffusion	170
+Tiled VAE	tiledvae	170
+ESRGAN	esrgan	170
+Real-ESRGAN	realesrgan	180
+rembg	rembg	170
+background removal	backgroundremoval	160
+depth map	depthmap	160
+Canny	canny	180
+Lineart	lineart	170
+SoftEdge	softedge	160
+OpenPose	openpose	190
+DW Pose	dwpose	180
+DensePose	densepose	180
+Depth Anything	depthanything	180
+MiDaS	midas	160
+ZoeDepth	zoedepth	160
+Inpaint	inpaint	170
+outpaint	outpaint	170
+inpainting	inpainting	180
+regional prompting	regionalprompting	170
+XY Plot	xyplot	170
+wildcard	wildcard	160
+dynamic prompt	dynamicprompt	170
+Impact Pack	impactpack	180
+Inspire Pack	inspirepack	170
+Video Helper Suite	videohelpersuite	180
+ComfyUI Manager	comfyuimanager	200

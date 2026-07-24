@@ -171,6 +171,17 @@ object ClipboardManager : ClipboardManager.OnPrimaryClipChangedListener,
             mutex.withLock {
                 val entry = ClipboardEntry.fromClipData(clip, transformer) ?: return@withLock
                 if (entry.text.isBlank()) return@withLock
+                // Sensitive clips and zero-history mode are ephemeral. They may be offered as
+                // a one-time suggestion while the input method is alive, but are never written
+                // to the Room database.
+                if (!ClipboardPersistencePolicy.shouldPersist(
+                        sensitive = entry.sensitive,
+                        historyLimit = limitPref.getValue()
+                    )
+                ) {
+                    updateLastEntry(entry)
+                    return@withLock
+                }
                 try {
                     clbDao.find(entry.text, entry.sensitive)?.let {
                         updateLastEntry(it.copy(timestamp = entry.timestamp))
@@ -196,6 +207,12 @@ object ClipboardManager : ClipboardManager.OnPrimaryClipChangedListener,
     private suspend fun removeOutdated() {
         val limit = limitPref.getValue()
         val unpinned = clbDao.getAllUnpinned()
+        if (limit <= 0) {
+            clbDao.markUnpinnedAsDeletedEarlierThan(Long.MAX_VALUE)
+            clbDao.realDelete()
+            updateItemCount()
+            return
+        }
         if (unpinned.size > limit) {
             // the last one we will keep
             val last = unpinned

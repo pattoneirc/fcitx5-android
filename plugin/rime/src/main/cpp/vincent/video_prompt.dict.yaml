@@ -1,0 +1,93 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: video_prompt
+version: "1.0.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+text to video	texttovideo	190
+image to video	imagetovideo	190
+video to video	videotovideo	170
+T2V	ttwov	170
+I2V	itwov	170
+V2V	vtwov	160
+keyframe	keyframe	170
+keyframe interpolation	keyframeinterpolation	160
+frame interpolation	frameinterpolation	170
+motion interpolation	motioninterpolation	160
+reference image	referenceimage	160
+reference video	referencevideo	160
+character reference	characterreference	170
+style reference	stylereference	160
+motion reference	motionreference	160
+camera movement	cameramovement	190
+camera motion	cameramotion	180
+static camera	staticcamera	160
+locked camera	lockedcamera	160
+handheld camera	handheldcamera	170
+camera shake	camerashake	170
+smooth camera movement	smoothcameramovement	170
+slow camera movement	slowcameramovement	160
+dynamic camera	dynamiccamera	170
+dolly in	dollyin	180
+dolly out	dollyout	180
+push in	pushin	170
+pull out	pullout	170
+truck left	truckleft	160
+truck right	truckright	160
+pan left	panleft	170
+pan right	panright	170
+tilt up	tiltup	170
+tilt down	tiltdown	170
+crane up	craneup	160
+crane down	cranedown	160
+orbit shot	orbitshot	180
+arc shot	arcshot	170
+360 degree orbit	threesixtydegreeorbit	160
+tracking shot	trackingshot	180
+follow shot	followshot	170
+leading shot	leadingshot	160
+side tracking shot	sidetrackingshot	160
+POV shot	povshot	170
+drone shot	droneshot	170
+aerial shot	aerialshot	170
+steadicam	steadicam	160
+gimbal shot	gimbalshot	160
+zoom in	zoomin	170
+zoom out	zoomout	170
+whip pan	whippan	160
+rack focus	rackfocus	170
+focus pull	focuspull	160
+parallax	parallax	160
+slow motion	slowmotion	180
+speed ramp	speedramp	170
+time lapse	timelapse	170
+seamless loop	seamlessloop	170
+dynamic action	dynamicaction	180
+natural motion	naturalmotion	170
+fluid motion	fluidmotion	170
+motion consistency	motionconsistency	170
+temporal consistency	temporalconsistency	180
+character consistency	characterconsistency	180
+identity consistency	identityconsistency	180
+background consistency	backgroundconsistency	170
+style consistency	styleconsistency	170
+flicker reduction	flickerreduction	170
+anti-flicker	antiflicker	170
+cinematic video	cinematicvideo	180
+short film	shortfilm	170
+lip sync	lipsync	170
+camera control	cameracontrol	170
+motion coherence	motioncoherence	170
+
+aspect ratio	aspectratio	160
+scene transition	scenetransition	160
+cross dissolve	crossdissolve	150
+fade in	fadein	150
+fade out	fadeout	150
+frame extraction	frameextraction	150
+video interpolation	videointerpolation	160
+motion brush	motionbrush	160
+audio driven	audiodriven	160
+prompt adherence	promptadherence	160

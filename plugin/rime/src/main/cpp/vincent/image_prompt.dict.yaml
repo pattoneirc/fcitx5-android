@@ -1,0 +1,108 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: image_prompt
+version: "1.0.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+high resolution	highresolution	150
+4K resolution	fourkresolution	150
+ultra detailed	ultradetailed	160
+highly detailed	highlydetailed	150
+sharp focus	sharpfocus	150
+photorealistic	photorealistic	170
+hyperrealistic	hyperrealistic	150
+cinematic	cinematic	180
+cinematic	cinematicstyle	150
+cinematic composition	cinematiccomposition	160
+cinematic color grading	cinematiccolorgrading	170
+film still	filmstill	150
+movie still	moviestill	150
+editorial photography	editorialphotography	150
+commercial photography	commercialphotography	150
+fashion photography	fashionphotography	150
+portrait photography	portraitphotography	150
+key art	keyart	160
+visual development	visualdevelopment	150
+matte painting	mattepainting	160
+digital painting	digitalpainting	150
+illustration	illustration	150
+anime style	animestyle	160
+manga style	mangastyle	160
+comic style	comicstyle	160
+cel shading	celshading	150
+3D render	threedrender	170
+3D CG render	threedcgrender	170
+Unreal Engine 5 render	unrealenginefiverender	180
+Octane render	octanerender	160
+Cycles render	cyclesrender	150
+PBR material	pbrmaterial	170
+physically based rendering	physicallybasedrendering	150
+subsurface scattering	subsurfacescattering	170
+ray tracing	raytracing	160
+global illumination	globalillumination	160
+ambient occlusion	ambientocclusion	150
+cinematic lighting	cinematiclighting	190
+cinematic lighting	dianyingdengguang	150
+volumetric lighting	volumetriclighting	180
+volumetric lighting	tijiguang	150
+ambient lighting	ambientlighting	160
+rim light	rimlight	170
+backlight	backlight	150
+side lighting	sidelighting	150
+soft lighting	softlighting	160
+hard lighting	hardlighting	150
+natural lighting	naturallighting	160
+studio lighting	studiolighting	160
+dramatic lighting	dramaticlighting	170
+moody lighting	moodylighting	160
+low key lighting	lowkeylighting	160
+high key lighting	highkeylighting	150
+three point lighting	threepointlighting	150
+neon lighting	neonlighting	160
+golden hour	goldenhour	160
+blue hour	bluehour	150
+god rays	godrays	150
+lens flare	lensflare	150
+character design	characterdesign	180
+character design	juesesheji	150
+character sheet	charactersheet	180
+character sheet	juesesheding	150
+character turnaround	characterturnaround	180
+three view sheet	threeviewsheet	170
+front view	frontview	160
+side view	sideview	160
+back view	backview	160
+three quarter view	threequarterview	150
+full body	fullbody	170
+full body character	fullbodycharacter	170
+half body	halfbody	160
+upper body	upperbody	150
+close-up portrait	closeupportrait	160
+dynamic pose	dynamicpose	170
+action pose	actionpose	170
+facial expression	facialexpression	160
+expression sheet	expressionsheet	170
+costume design	costumedesign	160
+creature design	creaturedesign	160
+environment design	environmentdesign	160
+production design	productiondesign	160
+world building	worldbuilding	160
+depth of field	depthoffield	170
+shallow depth of field	shallowdepthoffield	160
+symmetrical composition	symmetricalcomposition	160
+low angle	lowangle	160
+high angle	highangle	160
+bird's-eye view	birdseyeview	160
+overhead shot	overheadshot	160
+Dutch angle	dutchangle	160
+wide angle lens	wideanglelens	160
+anamorphic lens	anamorphiclens	160
+
+practical lighting	practicallighting	140
+telephoto lens	telephotolens	150
+film grain	filmgrain	150
+color palette	colorpalette	150
+skin texture	skintexture	150
+deformed hands	deformedhands	140

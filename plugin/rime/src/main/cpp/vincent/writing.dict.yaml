@@ -1,0 +1,73 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: writing
+version: "1.0.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+creative writing	creativewriting	170
+screenwriting	screenwriting	190
+scriptwriting	scriptwriting	180
+novel writing	novelwriting	170
+story development	storydevelopment	170
+story structure	storystructure	180
+narrative structure	narrativestructure	180
+three-act structure	threeactstructure	170
+hero's journey	herosjourney	170
+beat sheet	beatsheet	170
+outline	outline	160
+story outline	storyoutline	170
+scene outline	sceneoutline	170
+chapter outline	chapteroutline	160
+synopsis	synopsis	170
+treatment	treatment	170
+logline	logline	180
+premise	premise	170
+theme	theme	160
+subtext	subtext	180
+conflict	conflict	170
+internal conflict	internalconflict	170
+external conflict	externalconflict	170
+dramatic question	dramaticquestion	160
+dramatic tension	dramatictension	170
+stakes	stakes	160
+rising action	risingaction	160
+climax	climax	170
+resolution	resolution	160
+inciting incident	incitingincident	170
+plot point	plotpoint	160
+midpoint	midpoint	160
+turning point	turningpoint	160
+setup and payoff	setupandpayoff	170
+foreshadowing	foreshadowing	170
+reversal	reversal	160
+reveal	reveal	160
+twist	twist	160
+plot twist	plottwist	170
+subplot	subplot	160
+story arc	storyarc	170
+character arc	characterarc	180
+protagonist	protagonist	180
+antagonist	antagonist	180
+supporting character	supportingcharacter	160
+antihero	antihero	160
+character profile	characterprofile	170
+character biography	characterbiography	160
+character motivation	charactermotivation	170
+character goal	charactergoal	160
+character need	characterneed	160
+character flaw	characterflaw	160
+backstory	backstory	170
+relationship arc	relationshiparc	160
+dialogue	dialogue	180
+dialogue polish	dialoguepolish	170
+natural dialogue	naturaldialogue	160
+subtext dialogue	subtextdialogue	160
+hook	hook	170
+cliffhanger	cliffhanger	170
+pacing	pacing	170
+worldbuilding	worldbuilding	180
+point of view	pointofview	170
+show don't tell	showdonttell	170
+script doctor	scriptdoctor	170

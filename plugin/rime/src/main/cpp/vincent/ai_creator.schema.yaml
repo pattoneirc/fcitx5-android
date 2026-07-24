@@ -1,0 +1,58 @@
+# Rime schema
+# encoding: utf-8
+---
+schema:
+  schema_id: ai_creator
+  name: AI 创作者词库
+  version: "1.1.0"
+  author:
+    - pattoneirc
+  description: >-
+    AI 绘图、视频生成、ComfyUI、漫剧分镜与小说创作术语。
+    主要作为其他拼音方案的低权重附加翻译器使用。
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [中文, 英文]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - punct_translator
+  filters:
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA0123456789
+  delimiter: " '"
+
+translator:
+  dictionary: ai_creator
+  enable_completion: false
+  enable_sentence: false
+  enable_user_dict: true
+
+key_binder:
+  import_preset: default
+
+punctuator:
+  import_preset: default
+
+recognizer:
+  import_preset: default

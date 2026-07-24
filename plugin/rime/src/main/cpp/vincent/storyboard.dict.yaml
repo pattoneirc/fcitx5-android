@@ -1,0 +1,72 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: storyboard
+version: "1.0.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+storyboard	storyboard	210
+storyboard panel	storyboardpanel	170
+storyboard sheet	storyboardsheet	160
+shot design	shotdesign	170
+shot breakdown	shotbreakdown	170
+visual storytelling	visualstorytelling	180
+cinematic language	cinematiclanguage	180
+shot language	shotlanguage	160
+screen direction	screendirection	160
+visual continuity	visualcontinuity	160
+spatial continuity	spatialcontinuity	160
+temporal continuity	temporalcontinuity	160
+continuity editing	continuityediting	160
+match on action	matchonaction	160
+eyeline match	eyelinematch	160
+180 degree rule	oneeightydegreerule	160
+axis of action	axisofaction	160
+establishing shot	establishingshot	180
+master shot	mastershot	170
+wide shot	wideshot	170
+full shot	fullshot	160
+medium wide shot	mediumwideshot	160
+medium shot	mediumshot	170
+medium close-up	mediumcloseup	170
+close-up	closeup	180
+extreme close-up	extremecloseup	170
+insert shot	insertshot	160
+cutaway	cutaway	160
+reaction shot	reactionshot	170
+two shot	twoshot	160
+over-the-shoulder shot	overtheshouldershot	180
+over shoulder shot	overshouldershot	170
+point-of-view shot	pointofviewshot	170
+subjective shot	subjectiveshot	160
+high angle shot	highangleshot	160
+low angle shot	lowangleshot	160
+Dutch angle shot	dutchangleshot	160
+bird's-eye shot	birdseyeshot	160
+silhouette shot	silhouetteshot	160
+dolly shot	dollyshot	170
+crane shot	craneshot	170
+handheld shot	handheldshot	170
+static shot	staticshot	160
+long take	longtake	170
+one take	onetake	160
+sequence shot	sequenceshot	160
+montage	montage	170
+parallel montage	parallelmontage	160
+cross-cutting	crosscutting	170
+jump cut	jumpcut	160
+match cut	matchcut	170
+graphic match	graphicmatch	160
+smash cut	smashcut	160
+emotional beat	emotionalbeat	160
+visual motif	visualmotif	160
+blocking	blocking	170
+character blocking	characterblocking	170
+staging	staging	160
+micro expression	microexpression	160
+motion comic	motioncomic	190
+dynamic comic	dynamiccomic	170
+manga cut	mangacut	170
+animatic	animatic	180
+previsualization	previsualization	170

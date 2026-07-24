@@ -1,0 +1,15 @@
+# AI 快捷码配置。仅完整匹配 pattern 中的编码时触发。
+# encoding: utf-8
+---
+pattern: >-
+  ^(?:ue5|i2v|t2v|v2v|3dcg|4k|8k|sd15|sdxl|wan21|wan22|h264|h265|fp8|fp16|bf16|int8|cfg7|lcm8|lora1|r16x9|r9x16|r1x1|r4x3|r3x4|r21x9)$
+
+translator:
+  dictionary: ai_creator
+  tag: ai_shortcut
+  enable_completion: false
+  enable_sentence: false
+  enable_user_dict: false
+  initial_quality: 0.5
+  comment_format:
+    - xform/.+//

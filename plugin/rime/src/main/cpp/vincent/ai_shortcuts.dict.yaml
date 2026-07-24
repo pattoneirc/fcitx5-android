@@ -1,0 +1,57 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: ai_shortcuts
+version: "1.0.0"
+sort: original
+use_preset_vocabulary: false
+...
+Unreal Engine 5	ue5	300
+image to video	i2v	300
+text to video	t2v	300
+video to video	v2v	280
+3D CG render	3dcg	300
+4K resolution	4k	280
+8K resolution	8k	270
+Stable Diffusion 1.5	sd15	280
+SDXL	sdxl	300
+Wan2.1	wan21	300
+Wan2.2	wan22	300
+H.264	h264	260
+H.265	h265	260
+FP8	fp8	260
+FP16	fp16	260
+BF16	bf16	260
+16:9	r16x9	280
+9:16	r9x16	280
+1:1	r1x1	260
+4:3	r4x3	260
+3:4	r3x4	260
+21:9	r21x9	260
+cinematic lighting	cgl	300
+volumetric lighting	vgl	280
+ambient lighting	abl	260
+subsurface scattering	sss	300
+physically based rendering	pbr	280
+depth of field	dof	280
+shallow depth of field	sdof	260
+character sheet	csheet	280
+character turnaround	cturn	280
+over-the-shoulder shot	ots	280
+point-of-view shot	pov	270
+dolly in	din	260
+dolly out	dout	260
+orbit shot	orbit	270
+tracking shot	track	270
+camera movement	cmove	260
+slow motion	slomo	260
+motion comic	mcomic	280
+storyboard	storybd	280
+shot list	shotlist	270
+character design	chardesign	270
+concept art	conceptart	260
+negative prompt	negp	260
+positive prompt	posp	260
+ControlNet	cnet	280
+IP-Adapter	ipa	280
+FaceDetailer	fd	270

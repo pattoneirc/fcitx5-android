@@ -1,0 +1,77 @@
+# Rime dictionary
+# encoding: utf-8
+---
+name: ai_models
+version: "1.0.0"
+sort: by_weight
+use_preset_vocabulary: false
+...
+ComfyUI	comfyui	260
+Stable Diffusion	stablediffusion	240
+SD 1.5	sdonefive	170
+SDXL Turbo	sdxlturbo	180
+Stable Cascade	stablecascade	150
+FLUX	flux	240
+FLUX.1	fluxone	210
+FLUX Kontext	fluxkontext	190
+Wan2.1	wan	220
+Wan2.2	wan	230
+Wan Video	wanvideo	190
+Qwen	qwen	230
+Qwen-VL	qwenvl	190
+Qwen-Image	qwenimage	200
+Qwen2.5	qwentwofive	170
+Llama	llama	200
+Llama 3	llamathree	170
+Mistral	mistral	180
+Mixtral	mixtral	160
+Gemma	gemma	170
+DeepSeek	deepseek	210
+Claude	claude	190
+GPT	gpt	200
+GPT-4o	gptfouro	180
+DALL-E	dalle	180
+Midjourney	midjourney	220
+Sora	sora	190
+Kling	kling	190
+可灵	keling	170
+海螺视频	hailuoshipin	160
+HunyuanVideo	hunyuanvideo	190
+CogVideoX	cogvideox	180
+LTX Video	ltxvideo	170
+AnimateDiff	animatediff	200
+VideoCrafter	videocrafter	160
+ControlNet	controlnet	230
+T2I-Adapter	twoiadapter	170
+IP-Adapter	ipadapter	230
+InstantID	instantid	190
+PuLID	pulid	180
+PhotoMaker	photomaker	170
+FaceID	faceid	190
+InsightFace	insightface	190
+GroundingDINO	groundingdino	180
+Segment Anything	segmentanything	170
+SAM2	samtwo	160
+CLIP	clip	200
+OpenCLIP	openclip	170
+T5	tfive	170
+VAE	vae	210
+UNet	unet	210
+DiT	dit	190
+LoRA	lora	230
+LyCORIS	lycoris	180
+LoCon	locon	160
+embedding	embedding	170
+textual inversion	textualinversion	160
+checkpoint	checkpoint	190
+motion model	motionmodel	160
+safetensors	safetensors	190
+ONNX	onnx	160
+TensorRT	tensorrt	170
+PyTorch	pytorch	190
+CUDA	cuda	190
+xFormers	xformers	170
+GGUF	gguf	170
+FP8	fpeight	160
+FP16	fpsixteen	160
+BF16	bfsixteen	160

@@ -1,0 +1,56 @@
+# Rime schema
+# encoding: utf-8
+---
+__include: luna_pinyin_simp.schema:/
+
+schema:
+  schema_id: vincent_pinyin
+  name: Vincent 简体 AI
+  version: "1.0.0"
+  author:
+    - pattoneirc
+  description: >-
+    面向 AI 创作、ComfyUI、漫剧分镜和小说写作的简体中文中英混输方案。
+  dependencies:
+    - stroke
+    - ai_creator
+
+engine:
+  translators:
+    - punct_translator
+    - table_translator@custom_phrase
+    - reverse_lookup_translator
+    - script_translator
+    - table_translator@ai_creator
+    - table_translator@ai_shortcuts
+
+translator:
+  dictionary: luna_pinyin
+  prism: vincent_pinyin
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+
+ai_creator:
+  dictionary: ai_creator
+  enable_completion: false
+  enable_sentence: false
+  enable_user_dict: true
+  initial_quality: -2.0
+  comment_format:
+    - xform/.+//
+
+ai_shortcuts:
+  __include: ai_shortcuts:/translator
+
+punctuator:
+  import_preset: ai_punctuation
+
+recognizer:
+  import_preset: default
+  patterns:
+    punct: '^/([0-9]0?|[A-Za-z]+)$'
+    reverse_lookup: "`[a-z]*'?$"
+    ai_shortcut:
+      __include: ai_shortcuts:/pattern
