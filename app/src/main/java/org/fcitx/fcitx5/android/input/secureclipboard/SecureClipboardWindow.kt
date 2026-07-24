@@ -7,16 +7,17 @@ package org.fcitx.fcitx5.android.input.secureclipboard
 import android.content.ClipData
 import android.os.Build
 import android.view.View
+import android.view.WindowManager
 import android.widget.PopupMenu
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.fcitx.fcitx5.android.R
+import org.fcitx.fcitx5.android.data.clipboard.ClipboardManager
 import org.fcitx.fcitx5.android.data.prefs.AppPrefs
 import org.fcitx.fcitx5.android.data.secureclipboard.SecureClipboardManager
 import org.fcitx.fcitx5.android.data.secureclipboard.SecureClipboardPolicy
-import org.fcitx.fcitx5.android.data.secureclipboard.db.SecureClipboardEntry
 import org.fcitx.fcitx5.android.data.theme.ThemeManager
 import org.fcitx.fcitx5.android.input.FcitxInputMethodService
 import org.fcitx.fcitx5.android.input.clipboard.ClipboardWindow
@@ -48,7 +49,7 @@ class SecureClipboardWindow : InputWindow.ExtendedInputWindow<SecureClipboardWin
             theme,
             context.dp(clipboardEntryRadius.toFloat())
         ) {
-            override fun onPaste(entry: SecureClipboardEntry) {
+            override fun onPaste(entry: SecureClipboardManager.DecryptedEntry) {
                 paste(entry.id)
             }
 
@@ -82,14 +83,14 @@ class SecureClipboardWindow : InputWindow.ExtendedInputWindow<SecureClipboardWin
     override fun onCreateView(): View = ui.root
 
     override fun onAttached() {
+        service.window?.window?.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
         if (!SecureClipboardManager.isInitialized) {
             context.toast(R.string.secure_clipboard_unavailable)
             ui.setEmpty(true)
             return
         }
         entriesJob = service.lifecycleScope.launch {
-            SecureClipboardManager.purgeExpired()
-            SecureClipboardManager.allEntries().collect {
+            SecureClipboardManager.decryptedEntries().collect {
                 adapter.submitList(it)
                 ui.setEmpty(it.isEmpty())
             }
@@ -102,6 +103,7 @@ class SecureClipboardWindow : InputWindow.ExtendedInputWindow<SecureClipboardWin
         adapter.onDetached()
         promptMenu?.dismiss()
         promptMenu = null
+        service.window?.window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
 
     private fun paste(id: Int) {
@@ -113,7 +115,6 @@ class SecureClipboardWindow : InputWindow.ExtendedInputWindow<SecureClipboardWin
                 return@launch
             }
             service.commitText(entry.text)
-            SecureClipboardManager.deleteAfterSuccessfulPaste(entry)
             if (clipboardReturnAfterPaste) {
                 windowManager.attachWindow(KeyboardWindow)
             }
@@ -121,10 +122,6 @@ class SecureClipboardWindow : InputWindow.ExtendedInputWindow<SecureClipboardWin
     }
 
     private fun importSystemClipboard() {
-        if (AppPrefs.getInstance().clipboard.clipboardListening.getValue()) {
-            context.toast(R.string.secure_import_requires_history_off)
-            return
-        }
         val text = context.clipboardManager.primaryClip
             ?.getItemAt(0)
             ?.text
@@ -141,6 +138,7 @@ class SecureClipboardWindow : InputWindow.ExtendedInputWindow<SecureClipboardWin
         service.lifecycleScope.launch {
             runCatching {
                 SecureClipboardManager.save(text)
+                ClipboardManager.permanentlyDeleteText(text)
             }.onSuccess {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     context.clipboardManager.clearPrimaryClip()

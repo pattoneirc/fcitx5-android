@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Process
@@ -122,6 +123,7 @@ class FcitxApplication : Application() {
         instance = this
         // we don't have AppPrefs available yet
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(ctx)
+        migrateClipboardDefaults(sharedPrefs)
         Timber.setupForest(verbose = sharedPrefs.getBoolean("verbose_log", false))
 
         Timber.d("isDirectBootMode=$isDirectBootMode")
@@ -155,6 +157,27 @@ class FcitxApplication : Application() {
         )
     }
 
+    /**
+     * Upgrade personal-build clipboard defaults. This migration intentionally raises a smaller
+     * history to the requested 300-entry baseline; later user changes are preserved because the
+     * migration marker is written once.
+     */
+    private fun migrateClipboardDefaults(sharedPreferences: SharedPreferences) {
+        if (sharedPreferences.getBoolean(CLIPBOARD_DEFAULTS_V3_MIGRATED, false)) return
+        sharedPreferences.edit(commit = true) {
+            if (!sharedPreferences.contains(CLIPBOARD_ENABLED_KEY)) {
+                putBoolean(CLIPBOARD_ENABLED_KEY, true)
+            }
+            if (
+                !sharedPreferences.contains(CLIPBOARD_LIMIT_KEY) ||
+                sharedPreferences.getInt(CLIPBOARD_LIMIT_KEY, 0) < DEFAULT_CLIPBOARD_LIMIT
+            ) {
+                putInt(CLIPBOARD_LIMIT_KEY, DEFAULT_CLIPBOARD_LIMIT)
+            }
+            putBoolean(CLIPBOARD_DEFAULTS_V3_MIGRATED, true)
+        }
+    }
+
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         ThemeManager.onSystemPlatteChange(newConfig)
@@ -169,6 +192,11 @@ class FcitxApplication : Application() {
 
         fun getLastPid() = lastPid
         private const val MAX_STACKTRACE_SIZE = 128000
+        private const val CLIPBOARD_DEFAULTS_V3_MIGRATED =
+            "vincent_clipboard_defaults_v3_migrated"
+        private const val CLIPBOARD_ENABLED_KEY = "clipboard_enable"
+        private const val CLIPBOARD_LIMIT_KEY = "clipboard_limit"
+        private const val DEFAULT_CLIPBOARD_LIMIT = 300
 
         const val ACTION_RESTART_FCITX_INSTANCE =
             "${BuildConfig.APPLICATION_ID}.action.RESTART_FCITX_INSTANCE"

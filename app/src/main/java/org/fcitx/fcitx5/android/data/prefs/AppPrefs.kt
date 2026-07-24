@@ -326,13 +326,14 @@ class AppPrefs(private val sharedPreferences: SharedPreferences) {
     }
 
     inner class Clipboard : ManagedPreferenceCategory(R.string.clipboard, sharedPreferences) {
-        // Privacy-first default for the personal build: never monitor the system clipboard
-        // until the user explicitly opts in.
-        val clipboardListening = switch(R.string.clipboard_listening, "clipboard_enable", false)
+        // A primary input method still needs a useful everyday clipboard. Keep a practical,
+        // local-only history by default; clips explicitly marked sensitive are filtered by
+        // ClipboardPersistencePolicy and the encrypted vault remains available separately.
+        val clipboardListening = switch(R.string.clipboard_listening, "clipboard_enable", true)
         val clipboardHistoryLimit = int(
             R.string.clipboard_limit,
             "clipboard_limit",
-            0,
+            300,
         ) { clipboardListening.getValue() }
         val clipboardSuggestion = switch(
             R.string.clipboard_suggestion, "clipboard_suggestion", false

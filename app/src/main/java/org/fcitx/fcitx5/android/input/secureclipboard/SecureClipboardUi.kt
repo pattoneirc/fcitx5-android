@@ -6,6 +6,7 @@ package org.fcitx.fcitx5.android.input.secureclipboard
 
 import android.content.Context
 import android.view.Gravity
+import android.view.View
 import android.widget.ViewAnimator
 import org.fcitx.fcitx5.android.R
 import org.fcitx.fcitx5.android.data.theme.Theme
@@ -29,6 +30,8 @@ import splitties.views.setPaddingDp
 class SecureClipboardUi(override val ctx: Context, private val theme: Theme) : Ui {
     val recyclerView = recyclerView {
         addItemDecoration(SpacesItemDecoration(dp(4)))
+        importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS
+        filterTouchesWhenObscured = true
     }
 
     private val emptyView = textView {

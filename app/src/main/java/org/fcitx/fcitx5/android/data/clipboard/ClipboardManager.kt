@@ -120,6 +120,22 @@ object ClipboardManager : ClipboardManager.OnPrimaryClipChangedListener,
         updateItemCount()
     }
 
+    /**
+     * Removes a plaintext entry after the user explicitly moves it into the encrypted vault.
+     * This is deliberately separate from normal soft deletion so the active database no longer
+     * retains a queryable copy of the protected text.
+     */
+    suspend fun permanentlyDeleteText(text: String) {
+        mutex.withLock {
+            clbDao.find(text)?.let {
+                clbDao.markAsDeleted(it.id)
+                clbDao.realDelete()
+                if (lastEntry?.id == it.id) lastEntry = null
+                updateItemCount()
+            }
+        }
+    }
+
     suspend fun deleteAll(skipPinned: Boolean = true): IntArray {
         val ids = if (skipPinned) {
             clbDao.findUnpinnedIds()

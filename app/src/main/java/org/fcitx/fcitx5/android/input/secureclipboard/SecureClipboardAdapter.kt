@@ -4,40 +4,39 @@
  */
 package org.fcitx.fcitx5.android.input.secureclipboard
 
-import android.text.format.DateFormat
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.fcitx.fcitx5.android.R
-import org.fcitx.fcitx5.android.data.secureclipboard.db.SecureClipboardEntry
+import org.fcitx.fcitx5.android.data.secureclipboard.SecureClipboardManager
 import org.fcitx.fcitx5.android.data.theme.Theme
 import org.fcitx.fcitx5.android.input.clipboard.ClipboardEntryUi
 import org.fcitx.fcitx5.android.utils.item
 import splitties.resources.styledColor
-import java.util.Date
 
 abstract class SecureClipboardAdapter(
     private val theme: Theme,
     private val entryRadius: Float
-) : ListAdapter<SecureClipboardEntry, SecureClipboardAdapter.ViewHolder>(diffCallback) {
+) : ListAdapter<SecureClipboardManager.DecryptedEntry, SecureClipboardAdapter.ViewHolder>(
+    diffCallback
+) {
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<SecureClipboardEntry>() {
-            override fun areItemsTheSame(
-                oldItem: SecureClipboardEntry,
-                newItem: SecureClipboardEntry
-            ): Boolean = oldItem.id == newItem.id
+        private val diffCallback =
+            object : DiffUtil.ItemCallback<SecureClipboardManager.DecryptedEntry>() {
+                override fun areItemsTheSame(
+                    oldItem: SecureClipboardManager.DecryptedEntry,
+                    newItem: SecureClipboardManager.DecryptedEntry
+                ): Boolean = oldItem.id == newItem.id
 
-            override fun areContentsTheSame(
-                oldItem: SecureClipboardEntry,
-                newItem: SecureClipboardEntry
-            ): Boolean =
-                oldItem.createdAt == newItem.createdAt &&
-                    oldItem.expiresAt == newItem.expiresAt &&
-                    oldItem.deleteAfterPaste == newItem.deleteAfterPaste
-        }
+                override fun areContentsTheSame(
+                    oldItem: SecureClipboardManager.DecryptedEntry,
+                    newItem: SecureClipboardManager.DecryptedEntry
+                ): Boolean =
+                    oldItem.createdAt == newItem.createdAt && oldItem.text == newItem.text
+            }
     }
 
     class ViewHolder(val entryUi: ClipboardEntryUi) : RecyclerView.ViewHolder(entryUi.root)
@@ -50,14 +49,7 @@ abstract class SecureClipboardAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entry = getItem(position)
         with(holder.entryUi) {
-            val expiry = DateFormat.getTimeFormat(ctx).format(Date(entry.expiresAt))
-            setEntry(
-                ctx.getString(
-                    R.string.secure_clipboard_entry,
-                    expiry
-                ),
-                false
-            )
+            setEntry(entry.text, false)
             root.setOnClickListener { onPaste(entry) }
             root.setOnLongClickListener {
                 popupMenu?.dismiss()
@@ -79,12 +71,20 @@ abstract class SecureClipboardAdapter(
         }
     }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        holder.entryUi.setEntry("", false)
+        holder.entryUi.root.setOnClickListener(null)
+        holder.entryUi.root.setOnLongClickListener(null)
+        super.onViewRecycled(holder)
+    }
+
     fun onDetached() {
         popupMenu?.dismiss()
         popupMenu = null
+        submitList(emptyList())
     }
 
-    abstract fun onPaste(entry: SecureClipboardEntry)
+    abstract fun onPaste(entry: SecureClipboardManager.DecryptedEntry)
 
     abstract fun onDelete(id: Int)
 }

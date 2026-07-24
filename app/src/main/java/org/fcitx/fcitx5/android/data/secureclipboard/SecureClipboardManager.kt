@@ -9,14 +9,10 @@ import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import androidx.room.Room
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.fcitx.fcitx5.android.data.secureclipboard.db.SecureClipboardDao
 import org.fcitx.fcitx5.android.data.secureclipboard.db.SecureClipboardDatabase
@@ -31,13 +27,11 @@ object SecureClipboardManager {
     data class DecryptedEntry(
         val id: Int,
         val text: String,
-        val deleteAfterPaste: Boolean
+        val createdAt: Long
     )
 
     private lateinit var database: SecureClipboardDatabase
     private lateinit var dao: SecureClipboardDao
-    private val cleanupScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private var expiryCleanupJob: Job? = null
 
     @Volatile
     var isInitialized: Boolean = false
@@ -52,12 +46,13 @@ object SecureClipboardManager {
         ).build()
         dao = database.secureClipboardDao()
         isInitialized = true
-        scheduleExpiryCleanup()
     }
 
-    fun allEntries(): Flow<List<SecureClipboardEntry>> {
+    fun decryptedEntries(): Flow<List<DecryptedEntry>> {
         check(isInitialized) { "Secure clipboard is unavailable before device unlock" }
         return dao.allEntries()
+            .map { entries -> entries.mapNotNull(::decryptStoredEntry) }
+            .flowOn(Dispatchers.IO)
     }
 
     suspend fun save(text: String): Long = withContext(Dispatchers.IO) {
@@ -68,7 +63,7 @@ object SecureClipboardManager {
         }
 
         val createdAt = System.currentTimeMillis()
-        val expiresAt = SecureClipboardPolicy.expiresAt(createdAt)
+        val expiresAt = SecureClipboardPolicy.PERSISTENT_EXPIRY
         val deleteAfterPaste = SecureClipboardPolicy.DELETE_AFTER_PASTE
         val plaintext = text.toByteArray(StandardCharsets.UTF_8)
         try {
@@ -81,7 +76,6 @@ object SecureClipboardManager {
                     deleteAfterPaste = deleteAfterPaste
                 ),
             )
-            dao.deleteExpired(createdAt)
             val rowId = dao.insert(
                 SecureClipboardEntry(
                     ciphertext = encrypted.ciphertext,
@@ -91,7 +85,6 @@ object SecureClipboardManager {
                     deleteAfterPaste = deleteAfterPaste
                 )
             )
-            scheduleExpiryCleanup()
             rowId
         } finally {
             plaintext.fill(0)
@@ -101,12 +94,11 @@ object SecureClipboardManager {
     suspend fun decrypt(id: Int): DecryptedEntry? = withContext(Dispatchers.IO) {
         check(isInitialized) { "Secure clipboard is unavailable before device unlock" }
         val entry = dao.get(id) ?: return@withContext null
-        if (SecureClipboardPolicy.isExpired(entry.expiresAt, System.currentTimeMillis())) {
-            dao.delete(entry.id)
-            return@withContext null
-        }
+        decryptStoredEntry(entry)
+    }
 
-        try {
+    private fun decryptStoredEntry(entry: SecureClipboardEntry): DecryptedEntry? {
+        return try {
             val plaintext = AesGcmCodec.decrypt(
                 key = getOrCreateKey(),
                 ciphertext = entry.ciphertext,
@@ -121,7 +113,7 @@ object SecureClipboardManager {
                 DecryptedEntry(
                     id = entry.id,
                     text = plaintext.toString(StandardCharsets.UTF_8),
-                    deleteAfterPaste = entry.deleteAfterPaste
+                    createdAt = entry.createdAt
                 )
             } finally {
                 plaintext.fill(0)
@@ -132,32 +124,12 @@ object SecureClipboardManager {
         }
     }
 
-    suspend fun deleteAfterSuccessfulPaste(entry: DecryptedEntry) {
-        if (entry.deleteAfterPaste) delete(entry.id)
-    }
-
     suspend fun delete(id: Int) = withContext(Dispatchers.IO) {
         if (isInitialized) dao.delete(id)
     }
 
     suspend fun deleteAll() = withContext(Dispatchers.IO) {
         if (isInitialized) dao.deleteAll()
-    }
-
-    suspend fun purgeExpired() = withContext(Dispatchers.IO) {
-        if (isInitialized) dao.deleteExpired(System.currentTimeMillis())
-    }
-
-    @Synchronized
-    private fun scheduleExpiryCleanup() {
-        expiryCleanupJob?.cancel()
-        expiryCleanupJob = cleanupScope.launch {
-            while (isActive) {
-                val nextExpiry = dao.nextExpiry() ?: break
-                delay((nextExpiry - System.currentTimeMillis()).coerceAtLeast(0L))
-                dao.deleteExpired(System.currentTimeMillis())
-            }
-        }
     }
 
     @Synchronized
